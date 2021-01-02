@@ -13,4 +13,4 @@ class TestResource(Resource):
 
 api.add_resource(TestResource, "/test")
 
-app.run(port=5005)
+app.run(host='0.0.0.0', port=5005)
