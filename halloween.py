@@ -2,6 +2,8 @@
 
 import RPi.GPIO as GPIO
 import time
+import os
+import _thread
 from flask import Flask, render_template, request
 app = Flask(__name__)
 HEAD_UP = 38
@@ -44,6 +46,26 @@ def action():
         GPIO.output(relay, GPIO.HIGH)
         time.sleep(duration)
         GPIO.output(relay, GPIO.LOW)
+    return render_template('index.html')
+
+@app.route("/vectorController")
+def vector_act():
+    vector_command = request.args.get('vector_command')
+    if vector_command is not None:
+        os.system('/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/SaySomething.py')
+    return render_template('index.html')
+
+@app.route("/vectorCurse")
+def vector_curse():
+    person_name = request.args.get('person_name')
+    if person_name is not None:
+        _thread.start_new_thread(os.system, (f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/Curse.py {person_name}",))
+        # os.system(f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/Curse.py {person_name}")
+    return render_template('index.html')
+
+@app.route("/vectorGoToCharger")
+def vector_goto_charger():
+    _thread.start_new_thread(os.system, (f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/GoToCharger.py",))
     return render_template('index.html')
 
 if __name__ == "__main__":
