@@ -72,6 +72,7 @@ def vector_goto_charger():
 def vector_move():
     direction = request.args.get('direction')
     if direction is not None:
+        # os.system(f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/Move.py {direction}")        
         _thread.start_new_thread(os.system, (f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/Move.py {direction}",))
     return render_template('index.html')
 
