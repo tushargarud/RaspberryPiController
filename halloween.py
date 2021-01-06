@@ -68,6 +68,13 @@ def vector_goto_charger():
     _thread.start_new_thread(os.system, (f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/GoToCharger.py",))
     return render_template('index.html')
 
+@app.route("/vectorMove")
+def vector_move():
+    direction = request.args.get('direction')
+    if direction is not None:
+        _thread.start_new_thread(os.system, (f"/home/pi/virtual_envs/vector_venv/bin/python3 /home/pi/vector_programs/VectorPlay/Move.py {direction}",))
+    return render_template('index.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5005, debug=True)
     
