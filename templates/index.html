@@ -1,11 +1,15 @@
 
 <!DOCTYPE html>
    <head>
-      <title>My Bed Controller</title>
+      <title>My Controller</title>
       <link rel="stylesheet" href="../static/style.css/">
    <center><h1>My Bed Controller</h1></center><br>
     </head>
    <center><body>
+        <form action="/lockControl" method="post" onsubmit="return confirm('Are you sure you UNLOCK the door?');">
+            <input type="submit" name="task" value="unlock" />
+        </form>
+        <br/><br/>
         <h1> 
                 <a href="/bedController?bed_part=head&bed_position=up&duration=2" class="button">Head Up</a>  
         </h1>
@@ -17,6 +21,10 @@
         </h1>
         <h1> 
                 <a href="/bedController?bed_part=leg&bed_position=down&duration=2" class="button">Leg Down</a>
-        </h1></center>
+        </h1><br/><br/>
+        <form action="/lockControl" method="post" onsubmit="return confirm('Are you sure you LOCK the door?');">
+            <input type="submit" name="task" value="lock" />
+        </form>
+    </center>
    </body>
 </html>
