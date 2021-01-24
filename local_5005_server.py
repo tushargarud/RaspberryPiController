@@ -21,6 +21,15 @@ def control_lock():
         os.system(f"/home/pi/virtual_envs/controller_venv/bin/python3 /home/pi/PiController/RaspberryPiController/open_lock.py")
     return render_template('index.html')
 
+@app.route("/cameraControl")
+def control_camera():
+    status = request.args.get('status')
+    if status == 'off':
+        os.system(f"/home/pi/virtual_envs/controller_venv/bin/python3 /home/pi/PiController/RaspberryPiController/wyzecam_off.py")
+    elif status == 'on':
+        os.system(f"/home/pi/virtual_envs/controller_venv/bin/python3 /home/pi/PiController/RaspberryPiController/wyzecam_on.py")
+    return render_template('index.html')
+
 @app.route("/vectorController")
 def vector_act():
     vector_command = request.args.get('vector_command')

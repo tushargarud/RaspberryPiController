@@ -21,7 +21,14 @@
         </h1>
         <h1> 
                 <a href="/bedController?bed_part=leg&bed_position=down&duration=2" class="button">Leg Down</a>
-        </h1><br/><br/>
+        </h1>
+        <h1> 
+                <a href="/cameraControl?status=off" class="button">Camera Off</a>
+        </h1>
+        <h1> 
+                <a href="/cameraControl?status=on" class="button">Camera On</a>
+        </h1>
+        <br/><br/>
         <form action="/lockControl" method="post" onsubmit="return confirm('Are you sure you LOCK the door?');">
             <input type="submit" name="task" value="lock" />
         </form>
