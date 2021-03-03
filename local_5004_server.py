@@ -6,12 +6,12 @@ import os
 import _thread
 from flask import Flask, render_template, request
 app = Flask(__name__)
-HEAD_UP = 38
-HEAD_DOWN = 40
-LEG_UP = 32
-LEG_DOWN = 36
+HEAD_UP = 20
+HEAD_DOWN = 21
+LEG_UP = 12
+LEG_DOWN = 16
 pins_used = [HEAD_UP, HEAD_DOWN, LEG_UP, LEG_DOWN]
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 DEFAULT_POSITION = HEAD_DOWN
 DEFAULT_DURATION = 5
 for x in pins_used:
